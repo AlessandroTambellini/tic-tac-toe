@@ -1,11 +1,6 @@
-import Square from "./Square";
 import "./Board.css";
 
 function Board({ squares, onClick }) {
-  const renderSquare = (i) => {
-    return <Square value={squares[i]} onClick={() => onClick(i)} />;
-  };
-
   return (
     <div id="board">
       <section id="row-indexes">
@@ -15,19 +10,39 @@ function Board({ squares, onClick }) {
       </section>
       <div id="grid">
         <section className="board-row">
-          {renderSquare(6)}
-          {renderSquare(7)}
-          {renderSquare(8)}
+          {" "}
+          <button className="square" onClick={() => onClick(6)}>
+            {squares[6]}
+          </button>
+          <button className="square" onClick={() => onClick(7)}>
+            {squares[7]}
+          </button>
+          <button className="square" onClick={() => onClick(8)}>
+            {squares[8]}
+          </button>
         </section>
         <section className="board-row">
-          {renderSquare(3)}
-          {renderSquare(4)}
-          {renderSquare(5)}
+          {" "}
+          <button className="square" onClick={() => onClick(3)}>
+            {squares[3]}
+          </button>
+          <button className="square" onClick={() => onClick(4)}>
+            {squares[4]}
+          </button>
+          <button className="square" onClick={() => onClick(5)}>
+            {squares[5]}
+          </button>
         </section>
         <section className="board-row">
-          {renderSquare(0)}
-          {renderSquare(1)}
-          {renderSquare(2)}
+          <button className="square" onClick={() => onClick(0)}>
+            {squares[0]}
+          </button>
+          <button className="square" onClick={() => onClick(1)}>
+            {squares[1]}
+          </button>
+          <button className="square" onClick={() => onClick(2)}>
+            {squares[2]}
+          </button>
         </section>
       </div>
       <section id="col-indexes">
