@@ -15,7 +15,7 @@ function isWinner(squares) {
       return squares[a];
     }
   }
-  return null;
+  return false;
 }
 
 export default isWinner;

@@ -45,7 +45,11 @@ function App() {
   const winner = isWinner(
     history.find((layout) => layout.idx === history.length - 1).squares
   );
-  const status = winner ? `${winner} wins` : `${xIsNext ? "X" : "O"} moves`;
+  const status = winner
+    ? `${winner} wins`
+    : history.length === 10
+    ? "Draw"
+    : `${xIsNext ? "X" : "O"} moves`;
 
   return (
     <main className="App">
@@ -57,6 +61,16 @@ function App() {
         onClick={(i) => handleClick(i)}
       />
       <p>{status}</p>
+      {(winner || history.length === 10) && (
+        <button
+          onClick={() => {
+            setHistory([...history.splice(0, 1)]);
+            setCurrLayoutVersion(0);
+          }}
+        >
+          Restart game
+        </button>
+      )}
       <MatchHistory
         history={history}
         onClick={(layoutIdx) => jumpTo(layoutIdx)}
