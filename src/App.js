@@ -20,8 +20,8 @@ function App() {
       history[history.length - 1].idx !== currLayoutVersion
     )
       return;
-    squares[i] = xIsNext ? "X" : "O";
 
+    squares[i] = xIsNext ? "X" : "O";
     const col = (i + 1) % 3 ? (i + 1) % 3 : 3;
     const row = Math.ceil((i + 1) / 3);
     setHistory([
@@ -46,7 +46,7 @@ function App() {
     history.find((layout) => layout.idx === history.length - 1).squares
   );
   const status = winner
-    ? `${winner} wins`
+    ? `${winner.symbol} wins`
     : history.length === 10
     ? "Draw"
     : `${xIsNext ? "X" : "O"} moves`;
@@ -59,16 +59,18 @@ function App() {
           history.find((layout) => layout.idx === currLayoutVersion).squares
         }
         onClick={(i) => handleClick(i)}
+        winningLine={winner.winningLine}
       />
       <p>{status}</p>
-      {(winner || history.length === 10) && (
+
+      {history.length > 1 && (
         <button
           onClick={() => {
             setHistory([...history.splice(0, 1)]);
             setCurrLayoutVersion(0);
           }}
         >
-          Restart game
+          {winner || history.length === 10 ? "New Match" : "Restart Match"}
         </button>
       )}
       <MatchHistory

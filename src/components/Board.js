@@ -1,6 +1,6 @@
 import "./Board.css";
 
-function Board({ squares, onClick }) {
+function Board({ squares, onClick, winningLine }) {
   return (
     <div id="board">
       <section id="row-indexes">
@@ -9,41 +9,17 @@ function Board({ squares, onClick }) {
         <span>1</span>
       </section>
       <div id="grid">
-        <section className="board-row">
-          {" "}
-          <button className="square" onClick={() => onClick(6)}>
-            {squares[6]}
-          </button>
-          <button className="square" onClick={() => onClick(7)}>
-            {squares[7]}
-          </button>
-          <button className="square" onClick={() => onClick(8)}>
-            {squares[8]}
-          </button>
-        </section>
-        <section className="board-row">
-          {" "}
-          <button className="square" onClick={() => onClick(3)}>
-            {squares[3]}
-          </button>
-          <button className="square" onClick={() => onClick(4)}>
-            {squares[4]}
-          </button>
-          <button className="square" onClick={() => onClick(5)}>
-            {squares[5]}
-          </button>
-        </section>
-        <section className="board-row">
-          <button className="square" onClick={() => onClick(0)}>
-            {squares[0]}
-          </button>
-          <button className="square" onClick={() => onClick(1)}>
-            {squares[1]}
-          </button>
-          <button className="square" onClick={() => onClick(2)}>
-            {squares[2]}
-          </button>
-        </section>
+        {squares.map((square, idx) => {
+          return (
+            <button
+              key={idx}
+              className={`square ${winningLine?.includes(idx) && "light-blue"}`}
+              onClick={() => onClick(idx)}
+            >
+              {square}
+            </button>
+          );
+        })}
       </div>
       <section id="col-indexes">
         <span>a</span>

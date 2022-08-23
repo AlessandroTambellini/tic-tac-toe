@@ -1,19 +1,9 @@
-/* import { useState } from "react";
- */
-function Move({ idx, onClick, info }) {
-  /* const [clicked, setClicked] = useState(false); */
+function Move({ idx, onClick, clicked, info }) {
   return (
     <li>
       {idx > 0 && `[${info.col + info.row}] `}
-      <button
-        onClick={() => {
-          onClick();
-          //setClicked(!clicked);
-        }}
-      >
-        {info.desc}
-      </button>
-      {/* {clicked && "displayed version"} */}
+      <button onClick={() => onClick()}>{info.desc}</button>
+      {clicked === idx && "displayed version"}
     </li>
   );
 }

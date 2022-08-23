@@ -1,7 +1,14 @@
+import { useEffect, useState } from "react";
 import Move from "./Move";
 import "./MatchHistory.css";
 
 function MatchHistory({ history, onClick, reverse }) {
+  const [clicked, setClicked] = useState(-1);
+
+  useEffect(() => {
+    setClicked(history.length - 1);
+  }, [history]);
+
   return (
     <article className="match-info">
       <h2>Match History</h2>
@@ -15,7 +22,11 @@ function MatchHistory({ history, onClick, reverse }) {
             <Move
               key={idx}
               idx={idx}
-              onClick={() => onClick(idx)}
+              onClick={() => {
+                onClick(idx);
+                setClicked(idx);
+              }}
+              clicked={clicked}
               info={{ desc, col, row: moveAddress[1] }}
             />
           );
